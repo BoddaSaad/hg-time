@@ -14,6 +14,7 @@
     @vite('resources/js/app.js')
 </head>
 <body>
+    @include('partials.header')
     {{ $slot }}
 </body>
 </html>
