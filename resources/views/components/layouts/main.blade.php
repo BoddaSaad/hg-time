@@ -13,8 +13,9 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
-<body>
+<body class="bg-slate-50">
     @include('partials.header')
     {{ $slot }}
+    @include('partials.footer')
 </body>
 </html>
