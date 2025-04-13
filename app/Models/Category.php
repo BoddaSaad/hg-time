@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -50,5 +51,12 @@ class Category extends Model implements HasMedia
             'featured' => 'boolean',
             'active' => 'boolean',
         ];
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', true);
+        });
     }
 }

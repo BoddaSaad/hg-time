@@ -49,19 +49,19 @@
                 class="hs-dropdown-menu sm:transition-[opacity,margin] sm:ease-in-out sm:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 w-full hidden z-10 sm:mt-3 top-full start-0 min-w-60 bg-white sm:shadow-md py-6 sm:px-2 before:absolute"
                 role="menu" aria-orientation="vertical" aria-labelledby="hs-mega-menu">
                 <div class="sm:grid sm:grid-cols-5 gap-5 container mx-auto overflow-y-scroll h-96">
-                    @for($k=0;$k<12;$k++)
+                    @foreach($categories as $category)
                         <div class="flex flex-col">
                             <a class="border-b py-2 my-2 text-black font-bold" href="#">
-                                Desktop
+                                {{ $category->name }}
                             </a>
-                            @for($i=0;$i<5;$i++)
+                            @foreach($category->children as $subcategory)
                                 <a class="py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
                                    href="#">
-                                    Used Desktop
+                                    {{ $subcategory->name }}
                                 </a>
-                            @endfor
+                            @endforeach
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -89,15 +89,15 @@
                     <!-- transition-transform duration-700 -->
                     <div
                         class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap opacity-0 transition-transform duration-700">
-                        @for($i=0;$i<20;$i++)
+                        @foreach($featuredCategories as $category)
                             <div class="hs-carousel-slide px-1">
                                 <a href="#" class="flex flex-col items-center font-semibold text-gray-800 text-lg">
                                     <img class="w-56"
-                                         src="https://hardwaremarket.net/wp-content/uploads/2022/02/keyboard.png">
-                                    <h4>Keyboard</h4>
+                                         src="{{ $category->getFirstMediaUrl("*") }}">
+                                    <h4>{{ $category->name }}</h4>
                                 </a>
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>

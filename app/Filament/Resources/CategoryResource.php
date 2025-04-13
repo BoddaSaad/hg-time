@@ -45,7 +45,6 @@ class CategoryResource extends Resource
                     ])->columnSpan(1),
 
                     SpatieMediaLibraryFileUpload::make('image')
-                        ->collection('categories')
                         ->label('Image')
                         ->image(),
 
@@ -68,7 +67,7 @@ class CategoryResource extends Resource
             ->filters([
                 //
             ])
-            ->modifyQueryUsing(fn (Builder $query) => $query->whereNull('parent_id'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->withoutGlobalScopes()->whereNull('parent_id'))
             ->actions([
                 EditAction::make(),
                 DeleteAction::make(),

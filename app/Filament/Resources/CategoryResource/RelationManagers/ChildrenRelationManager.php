@@ -44,8 +44,6 @@ class ChildrenRelationManager extends RelationManager
                     ->searchable()
                     ->sortable(),
 
-                ToggleColumn::make('featured'),
-
                 ToggleColumn::make('active'),
             ])
             ->filters([
