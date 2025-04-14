@@ -164,7 +164,7 @@
                                         <a href="#" class="w-full rounded-md overflow-hidden mb-3">
                                             <img class="w-full h-full object-contain group-hover/item:hidden"
                                                  src="{{ $product->getFirstMediaUrl() }}">
-                                            <img class="hidden w-full h-full object-contain group-hover/item:block" src="{{ $product->getMedia()[1]?->getFullUrl() }}">
+                                            <img class="hidden w-full h-full object-contain group-hover/item:block" src="{{ ($product->getMedia()[1] ?? $product->getFirstMedia())->getFullUrl() }}">
                                         </a>
                                         <a href="#" class="font-semibold text-gray-800">
                                             <h4 class="line-clamp-2">{{ $product->title }}</h4>

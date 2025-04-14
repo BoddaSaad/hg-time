@@ -14,8 +14,8 @@ class CategoryFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'slug' => $this->faker->slug(),
-            'featured' => $this->faker->boolean(),
-            'active' => $this->faker->boolean(),
+            'featured' => true,
+            'active' => true,
             'landing' => $this->faker->boolean(),
             'parent_id' => null,
         ];
