@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug')->unique();
             $table->boolean('featured')->default(false);
+            $table->boolean('landing')->default(false);
             $table->boolean('active')->default(true);
             $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
         });

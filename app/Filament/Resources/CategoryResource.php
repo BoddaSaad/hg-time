@@ -59,10 +59,11 @@ class CategoryResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                ToggleColumn::make('active'),
 
                 ToggleColumn::make('featured'),
+                ToggleColumn::make('landing'),
 
-                ToggleColumn::make('active'),
             ])
             ->filters([
                 //
