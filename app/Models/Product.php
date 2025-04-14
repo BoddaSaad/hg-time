@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,7 +13,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Product extends Model implements HasMedia
 {
-    use HasSlug, InteractsWithMedia;
+    use HasSlug, InteractsWithMedia, HasFactory;
 
     /**
      * Get the options for generating the slug.

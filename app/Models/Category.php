@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Category extends Model implements HasMedia
 {
-    use HasSlug, InteractsWithMedia;
+    use HasSlug, InteractsWithMedia, HasFactory;
 
     public $timestamps = false;
 
