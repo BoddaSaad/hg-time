@@ -12,8 +12,11 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Tables\Actions\DissociateAction;
+use Filament\Tables\Actions\DissociateBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
@@ -25,41 +28,7 @@ class ProductsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                TextInput::make('title')
-                    ->required()
-                    ->reactive()
-                    ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
 
-                TextInput::make('slug')
-                    ->disabled()
-                    ->required()
-                    ->unique(Product::class, 'slug', fn($record) => $record),
-
-                TextInput::make('description')
-                    ->required(),
-
-                TextInput::make('price')
-                    ->required()
-                    ->numeric(),
-
-                TextInput::make('discount')
-                    ->required()
-                    ->numeric(),
-
-                TextInput::make('discount_type')
-                    ->required(),
-
-                TextInput::make('quantity')
-                    ->required()
-                    ->integer(),
-
-                Checkbox::make('active'),
-
-                Select::make('brand_id')
-                    ->relationship('brand', 'name')
-                    ->searchable(),
-
-                TextInput::make('return_policy'),
             ]);
     }
 
@@ -70,43 +39,32 @@ class ProductsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('title')
                     ->searchable()
-                    ->sortable(),
+                    ->wrap(),
 
-                TextColumn::make('slug')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('description'),
-
-                TextColumn::make('price'),
+                TextColumn::make('price')->sortable(),
 
                 TextColumn::make('discount'),
 
                 TextColumn::make('discount_type'),
 
-                TextColumn::make('quantity'),
+                TextColumn::make('quantity')->sortable(),
 
-                TextColumn::make('active'),
+                ToggleColumn::make('active')->sortable(),
 
                 TextColumn::make('brand.name')
-                    ->searchable()
-                    ->sortable(),
-
-                TextColumn::make('return_policy'),
+                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
             ])
             ->actions([
-                EditAction::make(),
-                DeleteAction::make(),
+                DissociateAction::make(),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DissociateBulkAction::make(),
                 ]),
             ]);
     }

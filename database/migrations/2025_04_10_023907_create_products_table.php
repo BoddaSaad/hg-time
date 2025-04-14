@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->text('description');
             $table->decimal('price');
-            $table->decimal('discount');
-            $table->enum('discount_type', ['percentage', 'fixed']);
+            $table->decimal('discount')->nullable();
+            $table->enum('discount_type', ['percentage', 'fixed'])->nullable();
             $table->unsignedInteger('quantity');
             $table->boolean('active')->default(true);
             $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
