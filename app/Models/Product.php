@@ -14,8 +14,6 @@ class Product extends Model implements HasMedia
 {
     use HasSlug, InteractsWithMedia;
 
-    public $timestamps = false;
-
     /**
      * Get the options for generating the slug.
      */
@@ -35,5 +33,16 @@ class Product extends Model implements HasMedia
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function getFinalPriceAttribute(): float
+    {
+        if ($this->discount) {
+            return $this->discount_type === 'percentage'
+                ? $this->price - ($this->price * $this->discount / 100)
+                : $this->price - $this->discount;
+        }
+
+        return $this->price;
     }
 }

@@ -131,7 +131,6 @@
         </div>
         <!-- End Slider -->
 
-    @for($k=0;$k<5;$k++)
         <div class="col-span-full my-4">
             <div class="flex items-center justify-between mb-5 bg-black p-3">
                 <h5 class="font-bold text-white text-2xl">New Arrivals</h5>
@@ -155,24 +154,27 @@
                         <!-- transition-transform duration-700 -->
                         <div
                             class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap opacity-0 transition-transform duration-700">
-                            @for($i=0;$i<20;$i++)
+                            @foreach($newArrivals as $product)
                                 <div class="hs-carousel-slide px-1 group/item">
                                     <div
                                         class="rounded-lg border border-gray-200 bg-white p-4 flex flex-col relative h-full">
-                                        <span class="bg-red-600 text-white absolute top-3 left-0 py-1 px-3 text-xs">SAVE 150 USD</span>
+                                        @if($product->discount)
+                                            <span class="bg-red-600 text-white absolute top-3 left-0 py-1 px-3 text-xs">SAVE {{ ceil($product->price - $product->final_price) }} USD</span>
+                                        @endif
                                         <a href="#" class="w-full rounded-md overflow-hidden mb-3">
                                             <img class="w-full h-full object-contain group-hover/item:hidden"
-                                                 src="https://hardwaremarket.net/wp-content/uploads/2022/01/REDRAGON-Fizz-K617-RGB-USB-Mini-Mechanical-Gaming-Keyboard-Red-Switch-61-Keys-Wired-detachable-cable.jpg">
-                                            <img class="hidden w-full h-full object-contain group-hover/item:block" src="https://hardwaremarket.net/wp-content/uploads/2022/01/redragon-fizz-grey-white-2.jpg">
+                                                 src="{{ $product->getFirstMediaUrl() }}">
+                                            <img class="hidden w-full h-full object-contain group-hover/item:block" src="{{ $product->getMedia()[1]?->getFullUrl() }}">
                                         </a>
                                         <a href="#" class="font-semibold text-gray-800">
-                                            <h4 class="line-clamp-2">REDRAGON K617 Fizz RGB 60% Gaming Mechanical
-                                                Keyboard – Red Switches (Grey White)</h4>
+                                            <h4 class="line-clamp-2">{{ $product->title }}</h4>
                                         </a>
-                                        <a class="text-gray-500 hover:text-gray-700 text-sm flex-start" href="#">Redragon</a>
+                                        <a class="text-gray-500 hover:text-gray-700 text-sm flex-start" href="#">{{ $product->brand->name }}</a>
                                         <div class="mt-3 flex items-center gap-3">
-                                            <span class="font-bold text-lg text-red-700">200 USD</span>
-                                            <span class="text-gray-600"><del>350 USD</del></span>
+                                            <span class="font-bold text-lg @if($product->discount) text-red-700 @endif">{{ $product->final_price }} USD</span>
+                                            @if($product->discount)
+                                                <span class="text-gray-600"><del>{{ $product->price }} USD</del></span>
+                                            @endif
                                         </div>
                                         <button
                                             class="flex items-center justify-center gap-3 bg-black text-white rounded-md py-2 px-4 mt-3 hover:bg-gray-800 transition duration-200 cursor-pointer">
@@ -181,7 +183,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -210,6 +212,5 @@
                 </div>
             </div>
             </div>
-    @endfor
     </div>
 </x-layouts.main>

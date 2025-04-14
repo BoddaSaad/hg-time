@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->boolean('active')->default(true);
             $table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete();
             $table->text('return_policy')->nullable();
+            $table->timestamps();
         });
     }
 
