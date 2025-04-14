@@ -70,7 +70,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $products->each(function (Product $product) {
-           $product->categories()->attach(Category::inRandomOrder(3)->value('id'));
+           $product->categories()->attach(Category::whereNotNull('parent_id')->inRandomOrder(3)->pluck('id'));
+           $product->categories()->attach(Category::whereNull('parent_id')->inRandomOrder(3)->pluck('id'));
 
            $productImages = [
                "https://hardwaremarket.net/wp-content/uploads/2021/04/Logitech-G-PRO-X-Wireless-Headset-5.jpg.webp",
