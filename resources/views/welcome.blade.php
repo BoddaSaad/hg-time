@@ -157,12 +157,12 @@
                                         @if($product->discount)
                                             <span class="bg-red-600 text-white absolute top-3 left-0 py-1 px-3 text-xs">SAVE {{ ceil($product->price - $product->final_price) }} USD</span>
                                         @endif
-                                        <a href="#" class="w-full rounded-md overflow-hidden mb-3">
+                                        <a href="{{ route('products.show', $product->slug) }}" class="w-full rounded-md overflow-hidden mb-3">
                                             <img class="w-full h-full object-contain group-hover/item:hidden"
                                                  src="{{ $product->getFirstMediaUrl() }}">
                                             <img class="hidden w-full h-full object-contain group-hover/item:block" src="{{ ($product->getMedia()[1] ?? $product->getFirstMedia())->getFullUrl() }}">
                                         </a>
-                                        <a href="#" class="font-semibold text-gray-800">
+                                        <a href="{{ route('products.show', $product->slug) }}" class="font-semibold text-gray-800">
                                             <h4 class="line-clamp-2">{{ $product->title }}</h4>
                                         </a>
                                         <a class="text-gray-500 hover:text-gray-700 text-sm flex-start" href="#">{{ $product->brand->name }}</a>
@@ -240,12 +240,12 @@
                                             @if($product->discount)
                                                 <span class="bg-red-600 text-white absolute top-3 left-0 py-1 px-3 text-xs">SAVE {{ ceil($product->price - $product->final_price) }} USD</span>
                                             @endif
-                                            <a href="#" class="w-full rounded-md overflow-hidden mb-3">
+                                            <a href="{{ route('products.show', $product->slug) }}" class="w-full rounded-md overflow-hidden mb-3">
                                                 <img class="w-full h-full object-contain group-hover/item:hidden"
                                                      src="{{ $product->getFirstMediaUrl() }}">
                                                 <img class="hidden w-full h-full object-contain group-hover/item:block" src="{{ ($product->getMedia()[1] ?? $product->getFirstMedia())->getFullUrl() }}">
                                             </a>
-                                            <a href="#" class="font-semibold text-gray-800">
+                                            <a href="{{ route('products.show', $product->slug) }}" class="font-semibold text-gray-800">
                                                 <h4 class="line-clamp-2">{{ $product->title }}</h4>
                                             </a>
                                             <a class="text-gray-500 hover:text-gray-700 text-sm flex-start" href="#">{{ $product->brand->name }}</a>

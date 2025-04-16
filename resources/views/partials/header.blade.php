@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <a href="#">
+        <a href="{{ route('home') }}">
             Home
         </a>
         <a href="#">

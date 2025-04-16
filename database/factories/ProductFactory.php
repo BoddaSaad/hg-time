@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'price' => $price,
             'discount' => $discount,
             'discount_type' => $discountType,
-            'quantity' => $this->faker->randomNumber(),
+            'quantity' => $this->faker->numberBetween(10, 200),
             'active' => true,
             'return_policy' => $this->faker->paragraph(),
             'created_at' => $date,
